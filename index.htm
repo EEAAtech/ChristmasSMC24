@@ -26,20 +26,17 @@
         #editor:focus {
             outline: none; /* Remove default outline */
         }
-        #saveButton {
-            margin-top: 10px;
-        }
+       
     </style>
 </head>
 <body>
 
-    <h1>Infinite Side Scrolling Text Editor</h1>
+    <h3 id="hymn">Infinite Side Scrolling Text Editor</h3>
     <div id="editor" contenteditable="true"></div> <!-- Default text set inline -->
-    <button id="saveButton">Save Text</button> <!-- Save button -->
-
+   
     <script>
         const editor = document.getElementById('editor');
-        const saveButton = document.getElementById('saveButton');
+        const hymn = document.getElementById('hymn');
 
         // Function to get the filename from query string
         function getFileNameFromQuery() {
@@ -59,6 +56,7 @@
                 })
                 .then(data => {
                     editor.innerText = data; // Set editor content to file content
+                    hymn.innerText = filename; // Set Hymn title
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
