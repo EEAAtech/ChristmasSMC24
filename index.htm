@@ -17,7 +17,7 @@
             height: 80vh;
             border: 1px solid #ccc;
             overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: pre; /* Prevent text wrapping */
+            white-space: pre; /* Preserve whitespace including spaces and tabs */
             padding: 10px;
             box-sizing: border-box;
             background-color: white;
@@ -26,20 +26,31 @@
         #editor:focus {
             outline: none; /* Remove default outline */
         }
+        #saveButton {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
     <h1>Infinite Side Scrolling Text Editor</h1>
-    <div id="editor" contenteditable="true">
-</div> <!-- Default text set inline -->
+    <div id="editor" contenteditable="true"></div> <!-- Default text set inline -->
+    <button id="saveButton">Save Text</button> <!-- Save button -->
 
     <script>
         const editor = document.getElementById('editor');
+        const saveButton = document.getElementById('saveButton');
 
-        // Load saved text from localStorage if available
+        // Function to get the filename from query string
+        function getFileNameFromQuery() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('file') || 'text.txt'; // Default to 'text.txt' if no parameter is found
+        }
+
+        // Load text from the specified text file when the page loads
         window.onload = function() {
-            fetch('text.txt') // Fetch the text file
+            const fileName = getFileNameFromQuery(); // Get the filename from query string
+            fetch(fileName) // Fetch the text file
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -51,29 +62,13 @@
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
-                    editor.innerText = "Hello world"; // Fallback content if fetch fails
+                    editor.innerText = "Hello, Something went wrong and I cant read the lyrics of the hymn. Please contact the software developer i.e. your musician :) "; // Fallback content if fetch fails
                 });
 
             editor.focus(); // Focus the editor
         };
 
-        // Save text to localStorage on input change
-        editor.addEventListener('input', () => {
-            
-const text = editor.innerText; // Get the text from the editor
-            const blob = new Blob([text], { type: 'text/plain' }); // Create a blob from the text
-            const url = URL.createObjectURL(blob); // Create a URL for the blob
-
-            const a = document.createElement('a'); // Create an anchor element
-            a.href = url; // Set the href to the blob URL
-            a.download = 'text.txt'; // Set the default filename
-            document.body.appendChild(a); // Append anchor to body
-            a.click(); // Programmatically click the anchor to trigger download
-            document.body.removeChild(a); // Remove anchor from body
-            URL.revokeObjectURL(url); // Revoke the blob URL
-
-        });
-
+      
         // Optional: Handle key events for additional functionality
         editor.addEventListener('keydown', (event) => {
             if (event.key === 'Tab') {
