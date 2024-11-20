@@ -3,111 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Side Scrolling Text Editor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet"> <!-- Include Roboto Mono -->
+    <title>Christmas Midnight Mass lyrics SMC 2024</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            text-align: center;
         }
-        #editor {
-            width: 100%;
-            height: 80vh;
-            border: 1px solid #ccc;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: pre; /* Preserve whitespace including spaces and tabs */
-            padding: 10px;
-            box-sizing: border-box;
-            background-color: white;
-            font-family: 'Roboto Mono', monospace; /* Set font to Roboto Mono */
+        h1 {
+            color: #c0392b;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
-        #editor:focus {
-            outline: none; /* Remove default outline */
+        ul {
+            list-style-type: none;
+            padding: 0;
         }
-       
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #e74c3c;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
     </style>
 </head>
 <body>
-
-    <h3 id="hymn">Infinite Side Scrolling Text Editor</h3>
-    <div id="editor" contenteditable="true"></div> <!-- Default text set inline -->
-   
-    <script>
-        const editor = document.getElementById('editor');
-        const hymn = document.getElementById('hymn');
-
-        // Function to get the filename from query string
-        function getFileNameFromQuery() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('file') || 'text.txt'; // Default to 'text.txt' if no parameter is found
-        }
-
-        // Load text from the specified text file when the page loads
-        window.onload = function() {
-            const fileName = getFileNameFromQuery(); // Get the filename from query string
-            hymn.innerText = fileName; // Set Hymn title
-            fetch(fileName) // Fetch the text file
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text(); // Read the response as text
-                })
-                .then(data => {
-                    editor.innerText = data; // Set editor content to file content
-                    applyLineStyles(); // Apply background colors after loading content
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    editor.innerText = "Hello, Something went wrong and I cant read the lyrics of the hymn. Please contact the software developer i.e. your musician :) "; // Fallback content if fetch fails
-                });
-
-            editor.focus(); // Focus the editor
-        };
-
-      // Function to apply alternating line styles
-        function applyLineStyles() {
-            const lines = editor.innerText.split('\n'); // Split text into lines
-            editor.innerHTML = ''; // Clear current content
-
-            lines.forEach((line, index) => {
-                const div = document.createElement('div'); // Create a new div for each line
-                div.classList.add('line'); // Add a class for styling
-                div.textContent = line; // Set the line text
-                
-                // Determine background color based on index
-                switch (index % 5) {
-                    case 0:
-                        div.style.backgroundColor = 'lightblue';
-                        break;
-                    case 1:
-                        div.style.backgroundColor = 'lightpink';
-                        break;
-                    case 2:
-                        div.style.backgroundColor = 'azure';
-                        break;
-                    case 3:
-                        div.style.backgroundColor = 'lightgreen';
-                        break;
-                    case 4:
-                        div.style.backgroundColor = 'black';
-                        break;
-                }
-
-                editor.appendChild(div); // Append the line div to the editor
-            });
-        }
-        
-        // Optional: Handle key events for additional functionality
-        editor.addEventListener('keydown', (event) => {
-            if (event.key === 'Tab') {
-                event.preventDefault(); // Prevent default tab behavior
-                document.execCommand('insertText', false, '    '); // Insert four spaces
-            }
-        });
-    </script>
-
+    <h1>Christmas Midnight Mass lyrics SMC 2024</h1>
+    <ul>
+        <li><a href="https://eeaatech.github.io/ChristmasSMC24/index.htm?file=LordHaveMercy>Lord Have Mercy</a></li>
+        <li><a href="https://eeaatech.github.io/ChristmasSMC24/index.htm?file=Povitr">Holy (Povitr)</a></li>
+        <li><a href="#link3">Link to Song 3</a></li>
+        <li><a href="#link4">Link to Song 4</a></li>
+        <li><a href="#link5">Link to Song 5</a></li>
+        <li><a href="#link6">Link to Song 6</a></li>
+        <li><a href="#link7">Link to Song 7</a></li>
+        <li><a href="#link8">Link to Song 8</a></li>
+        <li><a href="#link9">Link to Song 9</a></li>
+        <li><a href="#link10">Link to Song 10</a></li>
+        <li><a href="#link11">Link to Song 11</a></li>
+        <li><a href="#link12">Link to Song 12</a></li>
+        <li><a href="#link13">Link to Song 13</a></li>
+        <li><a href="#link14">Link to Song 14</a></li>
+        <li><a href="#link15">Link to Song 15</a></li>
+    </ul>
+    <div class="footer">
+        &copy; 2024 Christmas Midnight Mass
+    </div>
 </body>
 </html>
