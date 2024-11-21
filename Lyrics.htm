@@ -38,10 +38,15 @@
         const editor = document.getElementById('editor');
         const hymn = document.getElementById('hymn');
 
+           // Use a regular expression to insert spaces before each uppercase letter
+        function insertSpaces(camelCaseString) {         
+            return camelCaseString.replace(/([a-z])([A-Z])/g, '$1 $2');
+        }
+        
         // Function to get the filename from query string
         function getFileNameFromQuery() {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('file') || 'text'; // Default to 'text.txt' if no parameter is found
+            return insertSpaces(urlParams.get('file')) || 'text'; // Default to 'text.txt' if no parameter is found
         }
 
         // Load text from the specified text file when the page loads
@@ -49,7 +54,7 @@
             let fileName = getFileNameFromQuery(); // Get the filename from query string
             
             hymn.innerText = fileName; // Set Hymn title
-            fileName = '/' + fileName.concat('/', fileName, '.txt');
+            fileName = fileName.concat('/', fileName, '.txt');
             console.log(fileName);
             
             fetch(fileName) // Fetch the text file
