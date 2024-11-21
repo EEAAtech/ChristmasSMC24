@@ -86,15 +86,15 @@
                 
                     let cell = document.createElement('td');
                     let link = document.createElement('a');
-                    link.href = baseURL.concat("Lyrics.htm?", links[j].href);
-                    link.textContent = links[j].name;
+                    link.href = baseURL.concat("Lyrics.htm?", links[i].href);
+                    link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
 
                     let cell = document.createElement('td');
                     let link = document.createElement('a');
-                    link.href =  baseURL.concat(links[j].href, "/", links[j].href, "Sheet");
-                    link.textContent = links[j].name;
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet");
+                    link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
 
