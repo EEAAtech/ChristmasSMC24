@@ -34,6 +34,18 @@
         a:hover {
             color: #e74c3c;
         }
+
+        table {
+            width: auto; /* Set to auto for centering */
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse; /* Collapse borders */
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #add8e6; /* Light blue border */
+            text-align: center;
+        }
+        
         .footer {
             margin-top: 40px;
             font-size: 0.9em;
@@ -79,18 +91,24 @@
         // Function to create a table of links
         function createLinksTable() {
             const table = document.createElement('table');
-            const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
+            
+            let cell = '';
+            let link = '';
+            let row = '';
+            
             // Create rows and columns
             for (let i = 0; i < links.length; i += 1) {
-                const row = document.createElement('tr');
-                
-                    let cell = document.createElement('td');
-                    let link = document.createElement('a');
+                    row = document.createElement('tr');
+
+                    //Hymn Lyrics
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
                     link.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
 
+                    //Sheet
                     cell = document.createElement('td');
                     link = document.createElement('a');
                     link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet.pdf");
@@ -108,6 +126,8 @@
 
         // Check for query string parameter
         const urlParams = new URLSearchParams(window.location.search);
+        const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
+        
         if (urlParams.get('ea') === 'TTM') {
             createLinksTable();
         } else {
@@ -116,7 +136,7 @@
             links.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = link.href;
+                a.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
                 a.textContent = link.name;
                 li.appendChild(a);
                 ul.appendChild(li);
