@@ -44,26 +44,85 @@
 <body>
     <h1>Christmas Midnight Mass Lyrics SMC 2024</h1>
 
-  
+   <div id="linksContainer"></div>
+
+    <hr>
     <ul>
         <li><a href="https://eeaatech.github.io/ChristmasSMC24/Lyrics.htm?file=LordHaveMercy">Lord Have Mercy</a></li>
         <li><a href="https://eeaatech.github.io/ChristmasSMC24/Lyrics.htm?file=Povitr">Holy (Povitr)</a></li>
-        <li><a href="#link3">Link to Song 3</a></li>
-        <li><a href="#link4">Link to Song 4</a></li>
-        <li><a href="#link5">Link to Song 5</a></li>
-        <li><a href="#link6">Link to Song 6</a></li>
-        <li><a href="#link7">Link to Song 7</a></li>
-        <li><a href="#link8">Link to Song 8</a></li>
-        <li><a href="#link9">Link to Song 9</a></li>
-        <li><a href="#link10">Link to Song 10</a></li>
-        <li><a href="#link11">Link to Song 11</a></li>
-        <li><a href="#link12">Link to Song 12</a></li>
-        <li><a href="#link13">Link to Song 13</a></li>
-        <li><a href="#link14">Link to Song 14</a></li>
         <li><a href="#link15">Link to Song 15</a></li>
     </ul>
     <div class="footer">
         &copy; 2024 Erryl Alvares
     </div>
+
+    <script>
+        // Array of links
+        const links = [
+            { name: "Lord Have Mercy", href: "file=LordHaveMercy" },
+            { name: "Link to Song 2", href: "#link2" },
+            { name: "Link to Song 3", href: "#link3" },
+            { name: "Link to Song 4", href: "#link4" },
+            { name: "Link to Song 5", href: "#link5" },
+            { name: "Link to Song 6", href: "#link6" },
+            { name: "Link to Song 7", href: "#link7" },
+            { name: "Link to Song 8", href: "#link8" },
+            { name: "Link to Song 9", href: "#link9" },
+            { name: "Link to Song 10", href: "#link10" },
+            { name: "Link to Song 11", href: "#link11" },
+            { name: "Link to Song 12", href: "#link12" },
+            { name: "Link to Song 13", href: "#link13" },
+            { name: "Link to Song 14", href: "#link14" },
+            { name: "Link to Song 15", href: "#link15" }
+        ];
+
+        // Function to create a table of links
+        function createLinksTable() {
+            const table = document.createElement('table');
+            const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
+            // Create rows and columns
+            for (let i = 0; i < links.length; i += 1) {
+                const row = document.createElement('tr');
+                
+                    let cell = document.createElement('td');
+                    let link = document.createElement('a');
+                    link.href = baseURL.concat("Lyrics.htm?", links[j].href);
+                    link.textContent = links[j].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[j].href, "/", links[j].href, "Sheet");
+                    link.textContent = links[j].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    
+                
+                table.appendChild(row);
+            }
+
+            document.getElementById('linksContainer').appendChild(table);
+        }
+
+        // Check for query string parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('ea') === 'TTM') {
+            createLinksTable();
+        } else {
+            // Display links as a list if 'ea' is not 'TTM'
+            const ul = document.createElement('ul');
+            links.forEach(link => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.name;
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            document.getElementById('linksContainer').appendChild(ul);
+        }
+    </script>
 </body>
 </html>
