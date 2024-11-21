@@ -172,7 +172,7 @@
             links.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = baseURL.concat(link.href, "/Lyrics.htm?file=", link.href);
+                a.href = baseURL.concat("Lyrics.htm?file=", link.href);
                 a.textContent = link.name;
                 li.appendChild(a);
                 ul.appendChild(li);
