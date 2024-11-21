@@ -39,13 +39,20 @@
             width: auto; /* Set to auto for centering */
             margin: 20px auto; /* Center the table */
             border-collapse: collapse; /* Collapse borders */
+
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         td {
             padding: 10px;
             border: 1px solid #add8e6; /* Light blue border */
             text-align: center;
         }
-        
+
+        th {
+            font-weight: bold;
+        }
         .footer {
             margin-top: 40px;
             font-size: 0.9em;
@@ -72,7 +79,7 @@
         // Array of links
         const links = [
             { name: "Lord Have Mercy", href: "LordHaveMercy" },
-            { name: "Link to Song 2", href: "#link2" },
+            { name: "Holy (Povitr)", href: "Povitr" },
             { name: "Link to Song 3", href: "#link3" },
             { name: "Link to Song 4", href: "#link4" },
             { name: "Link to Song 5", href: "#link5" },
@@ -95,6 +102,24 @@
             let cell = '';
             let link = '';
             let row = '';
+
+            //Setup Table header
+            row = document.createElement('tr');
+            cell = document.createElement('th');
+            cell.innerHTML = "LYRICS";
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = "SHEET";
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = "CHORDS";
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = "INTRO";
+            row.appendChild(cell);
             
             // Create rows and columns
             for (let i = 0; i < links.length; i += 1) {
@@ -103,7 +128,7 @@
                     //Hymn Lyrics
                     cell = document.createElement('td');
                     link = document.createElement('a');
-                    link.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
+                    link.href = baseURL.concat(links[i].href, "/Lyrics.htm?file=", links[i].href);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
@@ -116,7 +141,21 @@
                     cell.appendChild(link);
                     row.appendChild(cell);
 
-                    
+                    //Chords
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Chords.png");
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    //Intro
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Intro.pdf");
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
                 
                 table.appendChild(row);
             }
@@ -136,7 +175,7 @@
             links.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = baseURL.concat("Lyrics.htm?file=", link.href);
+                a.href = baseURL.concat(links[i].href, "/Lyrics.htm?file=", link.href);
                 a.textContent = link.name;
                 li.appendChild(a);
                 ul.appendChild(li);
