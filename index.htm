@@ -59,7 +59,7 @@
     <script>
         // Array of links
         const links = [
-            { name: "Lord Have Mercy", href: "file=LordHaveMercy" },
+            { name: "Lord Have Mercy", href: "LordHaveMercy" },
             { name: "Link to Song 2", href: "#link2" },
             { name: "Link to Song 3", href: "#link3" },
             { name: "Link to Song 4", href: "#link4" },
@@ -86,14 +86,14 @@
                 
                     let cell = document.createElement('td');
                     let link = document.createElement('a');
-                    link.href = baseURL.concat("Lyrics.htm?", links[i].href);
+                    link.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
 
                     cell = document.createElement('td');
                     link = document.createElement('a');
-                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet");
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet.pdf");
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
