@@ -50,6 +50,7 @@
             
             hymn.innerText = fileName; // Set Hymn title
             fileName = fileName.concat('/', fileName, '.txt');
+            console.log(fileName);
             
             fetch(fileName) // Fetch the text file
                 .then(response => {
