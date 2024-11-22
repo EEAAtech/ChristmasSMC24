@@ -90,7 +90,7 @@
         ];
 
         // Function to create a table of links
-        function createLinksTable() {
+        function createLinksTable(h1,h2,h3, f1, f2, f3) {
             const table = document.createElement('table');
             
             let cell = '';
@@ -104,15 +104,15 @@
             row.appendChild(cell);
 
             cell = document.createElement('th');
-            cell.innerHTML = "SHEET";
+            cell.innerHTML = h1;
             row.appendChild(cell);
 
             cell = document.createElement('th');
-            cell.innerHTML = "CHORDS";
+            cell.innerHTML = h2;
             row.appendChild(cell);
 
             cell = document.createElement('th');
-            cell.innerHTML = "INTRO";
+            cell.innerHTML = h3;
             row.appendChild(cell);
 
             table.appendChild(row);
@@ -133,7 +133,7 @@
                     //Sheet
                     cell = document.createElement('td');
                     link = document.createElement('a');
-                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet.pdf");
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f1);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
@@ -141,7 +141,7 @@
                     //Chords
                     cell = document.createElement('td');
                     link = document.createElement('a');
-                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Chords.png");
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f2);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
@@ -149,7 +149,7 @@
                     //Intro
                     cell = document.createElement('td');
                     link = document.createElement('a');
-                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Intro.pdf");
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f3);
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
@@ -165,19 +165,9 @@
         const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
         
         if (urlParams.get('ea') === 'TTM') {
-            createLinksTable();
+            createLinksTable("SHEET", "CHORDS", "INTRO", "Sheet.pdf", "Chords.png", "Intro.pdf");
         } else {
-            // Display links as a list if 'ea' is not 'TTM'
-            const ul = document.createElement('ul');
-            links.forEach(link => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = baseURL.concat("Lyrics.htm?file=", link.href);
-                a.textContent = link.name;
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
-            document.getElementById('linksContainer').appendChild(ul);
+            createLinksTable("VOICE 1", "VOICE 2", "VOICE 3", "1.m4a", "2.m4a", "3.m4a");
         }
     </script>
 </body>
