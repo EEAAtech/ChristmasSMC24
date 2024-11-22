@@ -17,6 +17,7 @@
             height: 80vh;
             border: 1px solid #ccc;
             overflow-x: auto; /* Enable horizontal scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
             white-space: pre; /* Preserve whitespace including spaces and tabs */
             padding: 10px;
             box-sizing: border-box;
@@ -26,97 +27,98 @@
         #editor:focus {
             outline: none; /* Remove default outline */
         }
-       
+        .line {
+            padding: 5px; /* Add some padding for better appearance */
+        }
     </style>
 </head>
 <body>
 
-    <h3 id="hymn">Stella Maris Christmas 2024</h3>
-    <div id="editor"></div> <!-- Default text set inline -->
-   
-    <script>
-        const editor = document.getElementById('editor');
-        const hymn = document.getElementById('hymn');
+<h3 id="hymn">Stella Maris Christmas 2024</h3>
+<div id="editor" contenteditable="true"></div> <!-- Default text set inline -->
 
-           // Use a regular expression to insert spaces before each uppercase letter
-        function insertSpaces(camelCaseString) {         
-            return camelCaseString.replace(/([a-z])([A-Z])/g, '$1 $2');
-        }
+<script>
+    const editor = document.getElementById('editor');
+    const hymn = document.getElementById('hymn');
+
+    // Use a regular expression to insert spaces before each uppercase letter
+    function insertSpaces(camelCaseString) {         
+        return camelCaseString.replace(/([a-z])([A-Z])/g, '$1 $2');
+    }
+    
+    // Function to get the filename from query string
+    function getFileNameFromQuery() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('file') || 'text'; // Default to 'text.txt' if no parameter is found
+    }
+
+    // Load text from the specified text file when the page loads
+    window.onload = function() {
+        let fileName = getFileNameFromQuery(); // Get the filename from query string
         
-        // Function to get the filename from query string
-        function getFileNameFromQuery() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('file') || 'text'; // Default to 'text.txt' if no parameter is found
-        }
-
-        // Load text from the specified text file when the page loads
-        window.onload = function() {
-            let fileName = getFileNameFromQuery(); // Get the filename from query string
-            
-            hymn.innerText = insertSpaces(fileName); // Set Hymn title
-            fileName = fileName.concat('/', fileName, '.txt');
-            console.log(fileName);
-            
-            fetch(fileName) // Fetch the text file
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text(); // Read the response as text
-                })
-                .then(data => {
-                    editor.innerText = data; // Set editor content to file content
-                    applyLineStyles(); // Apply background colors after loading content
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    editor.innerText = "Hello, Something went wrong and I cant read the lyrics of the hymn. Please contact the software developer i.e. your musician :) "; // Fallback content if fetch fails
-                });
-
-            editor.focus(); // Focus the editor
-        };
-
-      // Function to apply alternating line styles
-        function applyLineStyles() {
-            const lines = editor.innerText.split('\n'); // Split text into lines
-            editor.innerHTML = ''; // Clear current content
-
-            lines.forEach((line, index) => {
-                const div = document.createElement('div'); // Create a new div for each line
-                div.classList.add('line'); // Add a class for styling
-                div.textContent = line; // Set the line text
-                
-                // Determine background color based on index
-                switch (index % 5) {
-                    case 0:
-                        div.style.backgroundColor = 'lightblue';
-                        break;
-                    case 1:
-                        div.style.backgroundColor = 'lightpink';
-                        break;
-                    case 2:
-                        div.style.backgroundColor = 'azure';
-                        break;
-                    case 3:
-                        div.style.backgroundColor = 'lightgreen';
-                        break;
-                    case 4:
-                        div.style.backgroundColor = 'black';
-                        break;
+        hymn.innerText = insertSpaces(fileName); // Set Hymn title
+        fileName = fileName.concat('/', fileName, '.txt');
+        console.log(fileName);
+        
+        fetch(fileName) // Fetch the text file
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-
-                editor.appendChild(div); // Append the line div to the editor
+                return response.text(); // Read the response as text
+            })
+            .then(data => {
+                editor.innerHTML = ''; // Clear current content
+                applyLineStyles(data); // Apply background colors after loading content
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                editor.innerText = "Hello, Something went wrong and I can't read the lyrics of the hymn. Please contact the software developer i.e. your musician :) "; // Fallback content if fetch fails
             });
-        }
+
+        editor.focus(); // Focus the editor
+    };
+
+    // Function to apply alternating line styles
+    function applyLineStyles(data) {
+        const lines = data.split('\n'); // Split text into lines
         
-        // Optional: Handle key events for additional functionality
-        editor.addEventListener('keydown', (event) => {
-            if (event.key === 'Tab') {
-                event.preventDefault(); // Prevent default tab behavior
-                document.execCommand('insertText', false, '    '); // Insert four spaces
+        lines.forEach((line, index) => {
+            const div = document.createElement('div'); // Create a new div for each line
+            div.classList.add('line'); // Add a class for styling
+            div.textContent = line; // Set the line text
+            
+            // Determine background color based on index
+            switch (index % 5) {
+                case 0:
+                    div.style.backgroundColor = 'lightblue';
+                    break;
+                case 1:
+                    div.style.backgroundColor = 'lightpink';
+                    break;
+                case 2:
+                    div.style.backgroundColor = 'azure';
+                    break;
+                case 3:
+                    div.style.backgroundColor = 'lightgreen';
+                    break;
+                case 4:
+                    div.style.backgroundColor = 'black';
+                    break;
             }
+
+            editor.appendChild(div); // Append the line div to the editor
         });
-    </script>
+    }
+    
+    // Optional: Handle key events for additional functionality
+    editor.addEventListener('keydown', (event) => {
+        if (event.key === 'Tab') {
+            event.preventDefault(); // Prevent default tab behavior
+            document.execCommand('insertText', false, '    '); // Insert four spaces
+        }
+    });
+</script>
 
 </body>
 </html>
