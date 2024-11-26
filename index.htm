@@ -90,7 +90,7 @@
         ];
 
         // Function to create a table of links
-        function createLinksTable(h1,h2,h3, f1, f2, f3) {
+        function createLinksTable(h1,h2,h3,h4, f1, f2, f3,f4) {
             const table = document.createElement('table');
             
             let cell = '';
@@ -115,6 +115,10 @@
             cell.innerHTML = h3;
             row.appendChild(cell);
 
+            cell = document.createElement('th');
+            cell.innerHTML = h4;
+            row.appendChild(cell);
+            
             table.appendChild(row);
 
             
@@ -153,6 +157,13 @@
                     link.textContent = links[i].name;
                     cell.appendChild(link);
                     row.appendChild(cell);
+
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f4);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
                 
                 table.appendChild(row);
             }
@@ -165,9 +176,9 @@
         const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
         
         if (urlParams.get('ea') === 'TTM') {
-            createLinksTable("SHEET", "CHORDS", "INTRO", "Sheet.pdf", "Chords.png", "Intro.pdf");
+            createLinksTable("SHEET", "CHORDS", "INTRO", " ", "Sheet.pdf", "Chords.png", "Intro.pdf", "404");
         } else {
-            createLinksTable("VOICE 1", "VOICE 2", "VOICE 3", "1.m4a", "2.m4a", "3.m4a");
+            createLinksTable("VOICE 1", "VOICE 2", "VOICE 3", "VOICE 4", "1.m4a", "2.m4a", "3.m4a", "4.m4a");
         }
     </script>
 </body>
