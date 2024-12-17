@@ -6,7 +6,7 @@
 [2]            bhorvanxeacho kall,     bhorvanxeacho kall      aa  aa   a a a
 
 [1] bhorvanxeacho kall,      bhorvanxeacho kall      bhorvanxeacho kall prokaslo; 
-
+[2]            bhorvanxeacho kall,     bhorvanxeacho kall      aa  aa   a a a
 .
 [2]                        amcho visvas                          amcho prokas! 
 [2]                        amcho visvas                          amcho prokas! 
@@ -18,7 +18,22 @@
 [1] zolmu Tuzo amcho visvas,            disnem Tujem amcho prokas! 
 [2]                        amcho visvas              amcho prokas! 
 .
-Amcheam onttar, amcheam onttar, amcheam onttar, novem kantar
-Deva-Ballak, Deva- ballak, Deva ballak, diuncheak ievkar; 
-amchea kallzant novo ul'las: Jezun ghôddlo novo itihas!
-amchea kallzant novo ul'las: Jezun ghôddlo novo itihas!
+[2]               Amcheam onttar               Amcheam onttar            tar, novem kantar
+[3]                                                                                       novem kantar
+[1] Amcheam onttar,             amcheam onttar,               amcheam onttar, novem kantar
+[2]               Amcheam onttar               Amcheam onttar            tar, novem kantar
+.
+[2]             Deva-Ballak,               Deva-Ballak,          aa  aa   a a a
+.
+[1] Deva-Ballak,              Deva- ballak,             Deva ballak, diuncheak ievkar; 
+[2]             Deva-Ballak,               Deva-Ballak,          aa  aa   a a a
+.
+[2]                             novo ul'las                           lo novo itihas!
+[2]                             novo ul'las                           lo novo itihas!
+[1] amchea kallzant novo ul'las:            Jezun ghôddlo novo itihas!
+[2]                             novo ul'las                           lo novo itihas!
+.
+[2]                             novo ul'las            lo novo itihas!
+[2]                             novo ul'las            lo novo itihas!
+[1] amchea kallzant novo ul'las:            Jezun ghôddlo novo itihas!
+[2]                             novo ul'las            lo novo itihas!
