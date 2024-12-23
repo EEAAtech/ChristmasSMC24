@@ -53,13 +53,22 @@
     }
 
     // Load text from the specified text file when the page loads
-    window.onload = function() {
-        let fileName = getFileNameFromQuery(); // Get the filename from query string
-        
-        hymn.innerText = insertSpaces(fileName); // Set Hymn title
-        fileName = fileName.concat('/', fileName, '.txt');
-        console.log(fileName);
-        
+window.onload = function() {
+    let fileName = getFileNameFromQuery(); // Get the filename from query string
+    let reload = getQueryParameter("Reload"); // Check if "Reload" parameter is present
+
+    hymn.innerText = insertSpaces(fileName); // Set Hymn title
+    fileName = fileName.concat('/', fileName, '.txt');
+    console.log(fileName);
+
+    // Check if the content is already in cache and if we need to reload it
+    if (!reload && localStorage.getItem(fileName)) {
+        // Load from cache
+        const cachedData = localStorage.getItem(fileName);
+        editor.innerHTML = ''; // Clear current content
+        applyLineStyles(cachedData); // Apply background colors after loading content from cache
+    } else {
+        // Fetch from server
         fetch(fileName) // Fetch the text file
             .then(response => {
                 if (!response.ok) {
@@ -68,6 +77,7 @@
                 return response.text(); // Read the response as text
             })
             .then(data => {
+                localStorage.setItem(fileName, data); // Save fetched data to cache
                 editor.innerHTML = ''; // Clear current content
                 applyLineStyles(data); // Apply background colors after loading content
             })
@@ -75,9 +85,17 @@
                 console.error('There was a problem with the fetch operation:', error);
                 editor.innerText = "Hello, Something went wrong and I can't read the lyrics of the hymn. Please contact the software developer i.e. your musician :) "; // Fallback content if fetch fails
             });
+    }
 
-        editor.focus(); // Focus the editor
-    };
+    editor.focus(); // Focus the editor
+};
+
+// Helper function to get query parameters from URL
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
 
     // Function to apply alternating line styles
     function applyLineStyles(data) {
