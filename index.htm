@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Midnight Mass SMC 2025</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #c0392b;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #e74c3c;
+        }
+
+        table {
+            width: auto; /* Set to auto for centering */
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse; /* Collapse borders */
+
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #add8e6; /* Light blue border */
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Christmas Midnight Mass SMC 2025</h1>
+
+   <div id="linksContainer"></div>
+
+    <div class="footer">
+        &copy; 2025 Erryl Alvares
+    </div>
+
+    <script>
+        // Array of links
+        const links = [
+            { name: "While Shepards Watched", href: "WhileShepardsWatched" },
+            { name: "Lord Have Mercy", href: "LordHaveMercy" },
+            { name: "Gloria", href: "Gloria" },
+            { name: "Zoi Sorvespora (SilverBells)", href: "ZoiSorvSilvBells" },
+            { name: "Holy (Povitr)", href: "Povitr" },
+            { name: "Devache Xellie", href: "DevaXellieLitTown" },
+            { name: "Silent Night", href: "SilentNight" },
+            { name: "Visvasacho Dis", href: "Visvasdis" }
+        ];
+
+        // Function to create a table of links
+        function createLinksTable(h1,h2,h3,h4, f1, f2, f3,f4) {
+            const table = document.createElement('table');
+            
+            let cell = '';
+            let link = '';
+            let row = '';
+
+            //Setup Table header
+            row = document.createElement('tr');
+            cell = document.createElement('th');
+            cell.innerHTML = "LYRICS";
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = h1;
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = h2;
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = h3;
+            row.appendChild(cell);
+
+            cell = document.createElement('th');
+            cell.innerHTML = h4;
+            row.appendChild(cell);
+            
+            table.appendChild(row);
+
+            
+            // Create rows and columns
+            for (let i = 0; i < links.length; i += 1) {
+                    row = document.createElement('tr');
+
+                    //Hymn Lyrics
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    //Sheet
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f1);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    //Chords
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f2);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    //Intro
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f3);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+
+                    cell = document.createElement('td');
+                    link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, f4);
+                    link.textContent = links[i].name;
+                    cell.appendChild(link);
+                    row.appendChild(cell);
+                
+                table.appendChild(row);
+            }
+
+            document.getElementById('linksContainer').appendChild(table);
+        }
+
+        // Check for query string parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const baseURL = "https://eeaatech.github.io/ChristmasSMC24/"
+        
+        if (urlParams.get('ea') === 'TTM') {
+            createLinksTable("SHEET", "CHORDS", "INTRO", " ", "Sheet.pdf", "Chords.png", "Intro.pdf", "404");
+        } else {
+            createLinksTable("VOICE 1", "VOICE 2", "VOICE 3", "VOICE 4", "1.m4a", "2.m4a", "3.m4a", "4.m4a");
+        }
+    </script>
+</body>
+</html>
