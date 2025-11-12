@@ -30,11 +30,30 @@
         .line {
             padding: 5px; /* Add some padding for better appearance */
         }
+        button {
+		background: none;
+      		border: none;
+      		cursor: pointer;
+      		padding: 8px;
+    	}
+    	svg {
+      		width: 24px;
+	        height: 24px;
+      		vertical-align: middle;
+    	}
     </style>
 </head>
 <body>
 
 <h3 id="hymn">Stella Maris Christmas 2024</h3>
+<button onclick="location.reload(true)">
+    <!-- SVG refresh icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"></polyline>
+      <path d="M1 20v-6a9 9 0 0 1 9-9 9 9 0 0 1 7.14 3.72l1.43 2"></path>
+    </svg>
+  </button>
 <div id="editor" contenteditable="false"></div> <!-- Default text set inline -->
 
 <script>
