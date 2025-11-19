@@ -56,11 +56,28 @@
 	        height: 24px;
       		vertical-align: middle;
     	}
+#refresh-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;            /* Space between icon and table */
+}
+
+#dynamic-table {
+    border-collapse: collapse;
+    font-size: 14px;
+    background: white;
+}
+
+#dynamic-table td {
+    padding: 2px 6px;
+}
+
     </style>
 </head>
 <body>
 
 <h3 id="hymn">Stella Maris Christmas 2024</h3>
+</hr>
 <div id="refresh-row">
 <button onclick="refreshLyrics()">
 
