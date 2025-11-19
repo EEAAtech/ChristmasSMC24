@@ -156,60 +156,71 @@ function getQueryParameter(name) {
     function applyLineStyles(data) {
     const lines = data.split('\n');
 
-    for (let i = 0; i < lines.length; i++) {
+    // Process in blocks of 5 to avoid duplicate rendering
+    for (let i = 0; i < lines.length; i += 5) {
+        const block = lines.slice(i, i + 5);
 
-        // Every 5th line (index % 5 === 4)
-        if (i % 5 === 4) {
-            const letter = lines[i].trim();   // Expect a single capital letter
-
+        // If we have a full block of 5 lines and the 5th is a single capital letter, render the big-letter layout
+        if (block.length === 5 && /^[A-Z]$/.test(block[4].trim())) {
             const container = document.createElement('div');
             container.classList.add('big-letter-container');
 
             // Big letter on the left
             const big = document.createElement('div');
             big.classList.add('big-letter');
-            big.textContent = letter;
+            big.textContent = block[4].trim();
 
-            // Block containing the four previous colored lines
-            const block = document.createElement('div');
+            // Right column with the 4 colored lines
+            const rightCol = document.createElement('div');
 
-            for (let j = i - 4; j < i; j++) {
+            for (let j = 0; j < 4; j++) {
                 const smallDiv = document.createElement('div');
                 smallDiv.classList.add('line');
-                smallDiv.textContent = lines[j];
+                smallDiv.textContent = block[j];
 
-                switch (j % 5) {
+                // Use original global index for color selection
+                const idx = i + j;
+                switch (idx % 5) {
                     case 0: smallDiv.style.backgroundColor = 'lightblue'; break;
                     case 1: smallDiv.style.backgroundColor = 'lightpink'; break;
                     case 2: smallDiv.style.backgroundColor = 'azure'; break;
                     case 3: smallDiv.style.backgroundColor = 'lightgreen'; break;
                 }
 
-                block.appendChild(smallDiv);
+                rightCol.appendChild(smallDiv);
             }
 
             container.appendChild(big);
-            container.appendChild(block);
+            container.appendChild(rightCol);
             editor.appendChild(container);
-        }
+        } else {
+            // Render each line in the block individually (handles blocks that don't have a capital-letter 5th line
+            // and also handles trailing blocks < 5 lines)
+            for (let j = 0; j < block.length; j++) {
+                const idx = i + j;
+                const div = document.createElement('div');
+                div.classList.add('line');
+                div.textContent = block[j];
 
-        else if (i % 5 !== 4) {
-            // Standard rendering for all other lines
-            const div = document.createElement('div');
-            div.classList.add('line');
-            div.textContent = lines[i];
+                // If this is the 5th position (index % 5 === 4) and not a capital letter,
+                // keep the black full-width background as before
+                if (idx % 5 === 4) {
+                    div.style.backgroundColor = 'black';
+                } else {
+                    switch (idx % 5) {
+                        case 0: div.style.backgroundColor = 'lightblue'; break;
+                        case 1: div.style.backgroundColor = 'lightpink'; break;
+                        case 2: div.style.backgroundColor = 'azure'; break;
+                        case 3: div.style.backgroundColor = 'lightgreen'; break;
+                    }
+                }
 
-            switch (i % 5) {
-                case 0: div.style.backgroundColor = 'lightblue'; break;
-                case 1: div.style.backgroundColor = 'lightpink'; break;
-                case 2: div.style.backgroundColor = 'azure'; break;
-                case 3: div.style.backgroundColor = 'lightgreen'; break;
+                editor.appendChild(div);
             }
-
-            editor.appendChild(div);
         }
     }
 }
+
 
     
     // Optional: Handle key events for additional functionality
