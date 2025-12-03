@@ -73,7 +73,7 @@
     <script>
         // Array of links
         const links = [
-            { name: "Ent", href: "Ent 25" },
+            { name: "Ent", href: "HarkTheHerald" },
             { name: "Lord Have Mercy", href: "LHMYouth" },
             { name: "Gloria", href: "Glori 25" },
             { name: "Acc", href: "AccSeekYeDavidsCty" },
@@ -124,11 +124,11 @@
 
                     //Hymn Lyrics
                     cell = document.createElement('td');
-                    // link = document.createElement('a');
-                    // link.href = baseURL.concat("Lyrics.htm?file=", links[i].href);
-                    // link.textContent = links[i].name;
-                    // cell.appendChild(link);
-			// cell.appendChild(document.createElement('br'));
+                     link = document.createElement('a');
+                    link.href =  baseURL.concat(links[i].href, "/", links[i].href, "Sheet.pdf" );
+                     link.textContent = "Sheet";
+                     cell.appendChild(link);
+			 cell.appendChild(document.createElement('br'));
                     link = document.createElement('a');
                     link.href = baseURL.concat("LyricsA.htm?file=", links[i].href);
                     link.textContent = links[i].name;
