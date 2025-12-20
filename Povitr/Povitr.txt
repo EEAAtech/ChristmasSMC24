@@ -1,5 +1,5 @@
 [2] Po-oo-vitr Po-oo-vitr Po-oo-vitr Po-vitr.
-[1] Po-oo-vitr Po-oo-vitr Po-oo-vitr Po-vitr.
+[1] Po-oo-vitr Po-oo-vitr Po-oo-vitr Po-vitr.  COME IN ON BEAT 2
 [1] Po-oo-vitr Po-oo-vitr Po-oo-vitr Po-vitr.
 [2] Po-oo-vitr Po-oo-vitr Po-oo-vitr Po-vitr.
 M
@@ -14,8 +14,8 @@ Sorg an-ni sonv-sa-ar bhor-leat Tuj-ea voi-bhovan, Unch sor-gim Thu-ka, Thu-ka z
 Sorg an-ni sonv-sa-ar bhor-leat Tuj-ea voi-bhovan, Unch sor-gim Thu-ka, Thu-ka zo-oi zoi.
 A
 [1] Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi,                                            
-                                           [1]  Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi.
-                                           [1]  Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi.
+                                                                           [1]  Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi.
+                                                                           [1]  Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi.
 [1] Sor-ves por-ra-che Nan-vim ie-ta Ta-ka zoi,                                            
 S
 [2] Unch sor-gim Thu-ka, Thu-ka zoi zoi.
